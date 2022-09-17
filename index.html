@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Usuarios</a>
+                        <a class="nav-link active" aria-current="page" href="index.html" >Usuarios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="produtos.php">Produtos</a>
@@ -44,7 +44,7 @@
 
     <div class="container border border-3 mt-2 rounded p-2">
         <h3 class="text-center">Gerenciamento de usuários</h3>
-        <form action="">
+        <form id="form-usuarios">
             <div class="row">
                 <div class="col-md">
                     <label for="nome" class="form-label">Nome</label>
@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-dark mt-4">Cadastrar</button>
+                <button type="button" onclick="addUser()" class="btn btn-dark mt-4">Cadastrar</button>
             </div>
 
         </form>
@@ -123,25 +123,8 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('#tabela').DataTable({
-                "language": {url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json'}
-            });
-        });
-
-
-        const addUser = () => {
-            let nome = $('nome').val()
-            let email = $('email').val()
-            let senha = $('senha').val()
-            let confirmar = $('confirmar').val()
-
-            
-        }
-            </script>
+        </script>
+        <script src="assets/js/script.js"></script>
 </body>
 
 </html>
