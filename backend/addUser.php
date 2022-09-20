@@ -14,7 +14,7 @@ try{
        $json = json_encode($json, JSON_UNESCAPED_UNICODE);
 
        echo $json;
-       exit()
+       exit();
 
     } else {
         $sql = "INSERT INTO tb_login(`nome`, `email`, `senha`) values ('$nome', '$email', '$senha')";
