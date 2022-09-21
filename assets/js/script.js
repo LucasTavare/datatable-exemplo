@@ -7,12 +7,26 @@ $(document).ready(function () {
 
 const addUser = () =>{
 
-    let dados
-     = new FormData($('#form-usuarios')[0])
+    let dados = new FormData($('#form-usuarios')[0])
 
     const result = fetch('backend/addUser.php',{
         method: 'POST',
         body: dados
     })
+    .then((response)=>response.json())
+    .then((result)=>{
+
+        Swal.fire({
+           title: 'Atenção',
+           text: result.Mensagem,
+           icon: result.retorno == 'ok' ? 'success' : 'error'
+          })
+
+            result.retorno == 'ok'? $('#form-usuarios')[0].reset() : ''
+          
+    })
 
 }
+
+
+
