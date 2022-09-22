@@ -9,13 +9,18 @@
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    <!-- importação bootstrap icons css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
 <body>
     <div class="container-fluid p-0 m-0"">
         <nav class=" navbar navbar-expand-lg navbar-dark bg-dark shadow-lg p-3 mb-5">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">lOGO</a>
+            <a class="navbar-brand" href="#"><iframe src="https://giphy.com/embed/y6WxLgdEa0GL3KzMYS" width="120" height="80" frameBorder="0" allowFullScreen style="padding: 20;"></iframe>
+                <!-- final dp menu -->
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -42,9 +47,7 @@
         </nav>
     </div>
 
-    <iframe src="https://giphy.com/embed/K1jZNrBK41M2293kTw" width="300" height="120" frameBorder="0" allowFullScreen></iframe>
-    <!-- final dp menu -->
-
+    
     <div class="container border border-3 mt-2 rounded p-2">
         <h3 class="text-center">Gerenciamento de usuários</h3>
         <form id="form-usuarios">
@@ -70,7 +73,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <button type="button" onclick="addUser()" class="btn btn-dark mt-4">Cadastrar</button>
+                <button type="button" onclick="addUser()" class="btn btn-dark mt-4"><i class="bi bi-person-plus"></i>Cadastrar</button>
             </div>
 
         </form>
@@ -78,6 +81,14 @@
         <!-- datatable para listagem -->
 
         <div class="mt-4 border p-2">
+
+            
+            <div class="text-end p-2">
+                <span>Atualizado em: <span id="horario-atualizado"></span></span>
+                <button class="btn btn-dark btn-sm" onclick="listUser()" ><i class="bi bi-arrow-clockwise"></i></button>
+            </div>
+            
+
             <table id="tabela" class="table table-dark table-striped p-2">
                 <thead>
                     <tr>
@@ -110,6 +121,10 @@
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="assets/js/moment/moment.js"></script>
+
+        <script src="assets/js/moment/moment-with-locales.js"></script>
 
         <script src="assets/js/script.js"></script>
 </body>
