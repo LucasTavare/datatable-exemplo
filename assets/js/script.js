@@ -40,42 +40,89 @@ const listUser = () => {
             let datahora = moment().format('DD/MM/YY HH:mm')
             $('#horario-atualizado').html(datahora)
 
-                $("#tabela").dataTable().fnDestroy();
-                $("#tabela-dados").html('')
+            $("#tabela").dataTable().fnDestroy();
+            $("#tabela-dados").html('')
 
             result.map(usuario => {
+
+
+
                 $('#tabela-dados').append(`
             <tr>
                 <td>${usuario.nome}</td>
                 <td>${usuario.email}</td>
+                <td>${usuario.data_cadastro}</td>
+                <td class="text-center">
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="${usuario.ativo == 1 ? 'flexSwitchCheckChecked' : 'flexSwitchCheckDefault'}" ${usuario.ativo == 1 ? 'checked' : ''} onchange="updateUserActive(${usuario.id})">
+                        <label class="form-check-label" for="${usuario.ativo == 1 ? 'flexSwitchCheckChecked' : 'flexSwitchCheckDefault'}">${usuario.ativo == 1 ? 'ativo' : 'desativado'}</label>
+                        </div>
+                </td>
                 <td class="text-center">
                 <button class="btn btn-primary" type="submit"><i class="bi bi-pencil-square"></i></button>
-                <button class="btn btn-danger" type="submit" onclick="removeUser()"><i class="bi bi-person-dash"></i></button>
+                <button class="btn btn-danger" type="submit" onclick="removeUser(${usuario.id})"><i class="bi bi-person-dash"></i></button>
                 </td>
             </tr>
         `)
             })
             $('#tabela').DataTable({
-                "language": { 
+                "language": {
                     url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/pt-BR.json',
                     retrive: true,
                 }
-                
+
             });
         })
-    }
+}
 
-const removeUser = () => {
-    const result = fetch(`backend/removeUser.php?id=${usuario.id}`, {
-        method: 'GET',
-        body: ''
+const removeUser = (id) => {
+    const result = fetch(`backend/removeUser.php`, {
+        method: 'POST',
+        body: `id=${id}`,
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+        }
     })
 
-    Swal.fire({
-        title: 'deleted user',
-        text: result.Mensagem,
-        icon: result.retorno == 'ok' ? 'success' : 'error'
-    })
+    .then((response) => response.json())
+    .then((result) => {
+
+        Swal.fire({
+            icon: result.retorno == 'ok' ? 'success' : 'error',
+            title: result.Mensagem,
+            timer: 2000
+        })
+
+        listUser()
+    
+
+})
 
 }
 
+const updateUserActive = (id) => {
+    const result = fetch(`backend/_update_user_ative.php`, {
+        method: "POST",
+        body: `id=${id}`,
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+        }
+
+    })
+
+    .then((response) => response.json())
+    .then((result) => {
+
+        Swal.fire({
+            icon: result.retorno == 'ok' ? 'success' : 'error',
+            title: result.Mensagem,
+            timer: 2000
+        })
+
+        listUser()
+    });
+
+    
+
+
+}

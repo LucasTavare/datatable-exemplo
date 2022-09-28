@@ -3,25 +3,25 @@
 include 'conexao.php';
 
 try{
+
     $id = $_POST['id'];
 
-    $sql = "DELETE FROM tb_login WHERE id = $id ";
+        $sql = "UPDATE tb_login SET ativo = NOT ativo WHERE id = $id";
 
-    $comando = $con -> prepare($sql);
+        $comando = $con -> prepare($sql);
 
         $comando -> execute();
 
         $retorno = array(
-            'retorno'=> 'ok',
-            'Mensagem'=>'Usuario deletad com sucesso!!!'
+            'retorno'=>'ok',
+            'Mensagem'=>'Usuario alterado com sucesso!!!'
         );
-
         $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
 
         echo $json;
 
-}catch(PDOException $erro){
 
+}catch(PDOException $erro) {
     $retorno = array(
         'retorno' => 'erro',
         'Mensagem'=> $erro->getMessage());
@@ -30,4 +30,5 @@ try{
 
         echo $json;
 }
+
 ?>
