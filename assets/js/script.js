@@ -51,7 +51,7 @@ const listUser = () => {
             <tr>
                 <td>${usuario.nome}</td>
                 <td>${usuario.email}</td>
-                <td>${usuario.data_cadastro}</td>
+                <td class="text-center">${moment(usuario.data_cadastro).format('DD/MM/YYYY HH:mm')}</td>
                 <td class="text-center">
                         <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="${usuario.ativo == 1 ? 'flexSwitchCheckChecked' : 'flexSwitchCheckDefault'}" ${usuario.ativo == 1 ? 'checked' : ''} onchange="updateUserActive(${usuario.id})">
