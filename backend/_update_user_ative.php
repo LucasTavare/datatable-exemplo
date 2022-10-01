@@ -1,6 +1,6 @@
 <?php
 
-include 'conexao.php';
+include 'function.php';
 
 try{
 
@@ -8,27 +8,11 @@ try{
 
         $sql = "UPDATE tb_login SET ativo = NOT ativo WHERE id = $id";
 
-        $comando = $con -> prepare($sql);
+        $msg = "Usuario alterado com sucesso";
 
-        $comando -> execute();
-
-        $retorno = array(
-            'retorno'=>'ok',
-            'Mensagem'=>'Usuario alterado com sucesso!!!'
-        );
-        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
-
-        echo $json;
-
-
+        addUpdDel($sql,$msg);
 }catch(PDOException $erro) {
-    $retorno = array(
-        'retorno' => 'erro',
-        'Mensagem'=> $erro->getMessage());
-        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
-
-
-        echo $json;
+    pdocatch($erro);
 }
 
 ?>

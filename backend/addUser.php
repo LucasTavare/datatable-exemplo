@@ -1,12 +1,18 @@
 <?php
 
-include 'conexao.php';
+include 'function.php';
 
 try{
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $confirma = $_POST['confirmar'];
+
+    validaCampoVazio($nome,'nome');
+    validaCampoVazio($email,'email');
+    validaCampoVazio($senha,'senha');
+    validaCampoVazio($confirma,'confirma');
+
 
     if($senha != $confirma) {
 
@@ -20,28 +26,13 @@ try{
 
     } 
         $sql = "INSERT INTO tb_login (`nome`, `email`, `senha`) values ('$nome', '$email', '$senha')";
+        
+        $msg = "usuario adc";
 
-        $comando = $con -> prepare($sql);
-
-        $comando -> execute();
-
-        $retorno = array(
-            'retorno'=>'ok',
-            'Mensagem'=>'Usuario adc com sucesso!!!'
-        );
-        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
-
-        echo $json;
-
+        addUpdDel($sql,$msg);
 
 }catch(PDOException $erro) {
-    $retorno = array(
-        'retorno' => 'erro',
-        'Mensagem'=> $erro->getMessage());
-        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
-
-
-        echo $json;
+    pdocatch($erro);
 }
 
 ?>

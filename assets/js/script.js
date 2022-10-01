@@ -7,6 +7,21 @@ $(document).ready(function () {
 
 const addUser = () => {
 
+    // validação de campos vazios
+
+    // let nome = $('#nome').val()
+
+    // if(nome == ''){
+    //     Swal.fire({
+    //         title: 'Atenção',
+    //         text: 'Preencha o campo do nome, por favor!',
+    //         icon: 'error'
+    //     })
+    //     return
+    // }
+
+    // let nome = document.getElementById('nome').value 
+
     let dados = new FormData($('#form-usuarios')[0])
 
     const result = fetch('backend/addUser.php', {
