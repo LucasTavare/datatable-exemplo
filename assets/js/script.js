@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
-    listUser()
+listUser()
 
+$('#telefone').inputmask('(99) 99999-9999')
+$('#cpf').inputmask('999.999.999-99')
 
 });
 
@@ -73,7 +75,7 @@ const listUser = () => {
                         </div>
                 </td>
                 <td class="text-center">
-                <button class="btn btn-primary" type="submit"><i class="bi bi-pencil-square"></i></button>
+                <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modal-edita-usuario"><i class="bi bi-pencil-square"></i></button>
                 <button class="btn btn-danger" type="submit" onclick="removeUser(${usuario.id})"><i class="bi bi-person-dash"></i></button>
                 </td>
             </tr>

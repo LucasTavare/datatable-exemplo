@@ -46,7 +46,6 @@
         </div>
         </nav>
     </div>
-
     
     <div class="container border border-3 mt-2 rounded p-2">
         <h3 class="text-center">Gerenciamento de usuários</h3>
@@ -72,6 +71,18 @@
                     <input type="password" class="form-control" name="confirmar" id="confirmar">
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md">
+                    <label for="cpf" class="form-label">CPF</label>
+                    <input type="text" class="form-control" name="cpf" id="cpf">
+                </div>
+                <div class="col-md">
+                    <label for="telefone" class="form-label">Telefone</label>
+                    <input type="text" class="form-control" name="telefone" id="telefone">
+                </div>
+            </div>
+
             <div class="text-center">
                 <button type="button" onclick="addUser()" class="btn btn-dark mt-4"><i class="bi bi-person-plus"></i>Cadastrar</button>
             </div>
@@ -109,6 +120,24 @@
 
         </div>
 
+        <div class="modal fade" id="modal-edita-usuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">alterar dados do usuario</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <H3>BORA BILL</H3>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                  <button type="button" class="btn btn-primary">Salvar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
     </div>
     
 
@@ -128,6 +157,8 @@
         <script src="assets/js/moment/moment.js"></script>
 
         <script src="assets/js/moment/moment-with-locales.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js" integrity="sha512-jTgBq4+dMYh73dquskmUFEgMY5mptcbqSw2rmhOZZSJjZbD2wMt0H5nhqWtleVkyBEjmzid5nyERPSNBafG4GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script src="assets/js/script.js"></script>
 </body>

@@ -3,17 +3,24 @@
 include 'function.php';
 
 try{
+
+    $carac = array('(',')','-',' ','.');
+
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
     $confirma = $_POST['confirmar'];
+    $telefone = str_replace($carac,"",$_POST['telefone']);
+    $cpf = str_replace($carac,"",$_POST['cpf']);
 
     validaCampoVazio($nome,'nome');
     validaCampoVazio($email,'email');
     validaCampoVazio($senha,'senha');
     validaCampoVazio($confirma,'confirma');
-
+    validaCampoVazio($cpf,'cpf');
+    validaCampoVazio($telefone,'telefone');
     checkEmailUser($email);
+    checkCpfUser($cpf);
 
 
     if($senha != $confirma) {
@@ -27,7 +34,12 @@ try{
        exit();
 
     } 
-        $sql = "INSERT INTO tb_login (`nome`, `email`, `senha`) values ('$nome', '$email', '$senha')";
+
+    $senha_cripto = sha1($senha);
+    
+
+
+        $sql = "INSERT INTO tb_login (`nome`, `email`, `senha`,`telefone`,`cpf`) values ('$nome', '$email', '$senha_cripto','$telefone','$cpf')";
         
         $msg = "usuario adc";
 
