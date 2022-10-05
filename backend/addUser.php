@@ -13,6 +13,8 @@ try{
     validaCampoVazio($senha,'senha');
     validaCampoVazio($confirma,'confirma');
 
+    checkEmailUser($email);
+
 
     if($senha != $confirma) {
 

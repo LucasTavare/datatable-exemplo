@@ -1,5 +1,8 @@
 <?php
 
+include_once 'conexao.php';
+
+error_reporting(0);
 
 function validaCampoVazio($campo,$nomedocampo){
 
@@ -15,9 +18,10 @@ function validaCampoVazio($campo,$nomedocampo){
 }
 
 function addUpdDel($sql,$mensagemre){
-    include 'conexao.php';
 
-    $comando = $con -> prepare($sql);
+
+
+    $comando = $GLOBALS['con'] -> prepare($sql);
 
         $comando -> execute();
 
@@ -38,6 +42,29 @@ function pdocatch($erro){
 
 
         echo $json;
+
+}
+
+function checkEmailUser($email){
+
+    $sql = "SELECT email FROM tb_login WHERE email = '$email'";
+
+    $comando = $GLOBALS['con'] -> prepare($sql);
+
+    $comando-> execute();
+
+    $validaEmail = $comando -> fetchAll(PDO::FETCH_ASSOC);
+
+    if($validaEmail !=  null){
+        $retorno = array(
+            'retorno'=>'error  ',
+            'Mensagem'=>'Email ja cadastrado!!!'
+        );
+        $json = json_encode($retorno, JSON_UNESCAPED_UNICODE);
+
+        echo $json;
+        exit;
+    }
 
 }
 ?>

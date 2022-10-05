@@ -21,7 +21,6 @@ const addUser = () => {
     // }
 
     // let nome = document.getElementById('nome').value 
-
     let dados = new FormData($('#form-usuarios')[0])
 
     const result = fetch('backend/addUser.php', {
