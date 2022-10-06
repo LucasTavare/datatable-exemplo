@@ -121,18 +121,52 @@
         </div>
 
         <div class="modal fade" id="modal-edita-usuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
                   <h1 class="modal-title fs-5" id="exampleModalLabel">alterar dados do usuario</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <H3>BORA BILL</H3>
+                        <form id="form-atualiza-usuarios">
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for="edita-nome" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" name="edita-nome" id="edita-nome">
+                                </div>
+                                <div class="col-md">
+                                    <label for="edita-email" class="form-label">E-mail</label>
+                                    <input type="text" class="form-control" name="edita-email" id="edita-email">
+                                </div>
+                
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for="edita-senha" class="form-label">Senha</label>
+                                    <input type="password" class="form-control" name="edita-senha" id="edita-senha">
+                                </div>
+                                <div class="col-md">
+                                    <label for="edita-confirmar" class="form-label">Confirmar</label>
+                                    <input type="password" class="form-control" name="edita-confirmar" id="edita-confirmar">
+                                </div>
+                            </div>
+                
+                            <div class="row">
+                                <div class="col-md">
+                                    <label for="edita-cpf" class="form-label">CPF</label>
+                                    <input type="text" class="form-control" name="edita-cpf" id="edita-cpf">
+                                </div>
+                                <div class="col-md">
+                                    <label for="edita-telefone" class="form-label">Telefone</label>
+                                    <input type="text" class="form-control" name="edita-telefone" id="edita-telefone">
+                                </div>
+                            </div>
+                
+                        </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                  <button type="button" class="btn btn-primary">Salvar</button>
+                  <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                  <button type="submit" onclick="updateUser()" class="btn btn-primary">Salvar</button>
                 </div>
               </div>
             </div>

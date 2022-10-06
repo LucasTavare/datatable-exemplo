@@ -5,6 +5,9 @@ listUser()
 $('#telefone').inputmask('(99) 99999-9999')
 $('#cpf').inputmask('999.999.999-99')
 
+$('#edita-telefone').inputmask('(99) 99999-9999')
+$('#edita-cpf').inputmask('999.999.999-99')
+
 });
 
 const addUser = () => {
@@ -75,7 +78,7 @@ const listUser = () => {
                         </div>
                 </td>
                 <td class="text-center">
-                <button class="btn btn-primary" type="submit" data-bs-toggle="modal" data-bs-target="#modal-edita-usuario"><i class="bi bi-pencil-square"></i></button>
+                <button class="btn btn-primary" type="submit"  onclick="listUserID(${usuario.id})"><i class="bi bi-pencil-square"></i></button>
                 <button class="btn btn-danger" type="submit" onclick="removeUser(${usuario.id})"><i class="bi bi-person-dash"></i></button>
                 </td>
             </tr>
@@ -140,5 +143,69 @@ const updateUserActive = (id) => {
 
     
 
+
+}
+
+const listUserID = (id) =>{
+
+    const result = fetch(`backend/listUserID.php`, {
+        method: 'POST',
+        body: `id=${id}`,
+        headers: {
+            'Content-type': 'application/x-www-form-urlencoded'
+        }
+    })
+
+    .then((response) => response.json())
+    .then((result) => {
+
+        $('#edita-nome').val(result[0].nome)
+        $('#edita-email').val(result[0].email)
+        $('#edita-telefone').val(result[0].telefone)
+        $('#edita-cpf').val(result[0].cpf)
+
+    const modalEditar = new bootstrap.Modal('#modal-edita-usuario')
+
+    modalEditar.show()
+})
+
+    
+}
+
+const updateUser = () => {
+
+    // validação de campos vazios
+
+    // let nome = $('#nome').val()
+
+    // if(nome == ''){
+    //     Swal.fire({
+    //         title: 'Atenção',
+    //         text: 'Preencha o campo do nome, por favor!',
+    //         icon: 'error'
+    //     })
+    //     return
+    // }
+
+    // let nome = document.getElementById('nome').value 
+    let dados = new FormData($('#form-atualiza-usuarios')[0])
+
+    const result = fetch('backend/updateUser.php', {
+        method: 'POST',
+        body: dados
+    })
+        .then((response) => response.json())
+        .then((result) => {
+
+            Swal.fire({
+                title: 'Atenção',
+                text: result.Mensagem,
+                icon: result.retorno == 'ok' ? 'success' : 'error'
+            })
+
+            result.retorno == 'ok' ? $('#form-atualiza-usuarios')[0].reset() : ''
+
+            result.retorno == 'ok' ? listUser() : ''
+        })
 
 }
