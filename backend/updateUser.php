@@ -36,7 +36,7 @@ try{
     
 
 
-        $sql = "UPDATE tb_login (`nome`, `email`, `senha`,`telefone`,`cpf`) values ('$nome', '$email', '$senha_cripto','$telefone','$cpf')";
+        $sql = "UPDATE tb_login `nome`='$nome', `email`='$email',  `senha`='$senha_cripto', `telefone`='$telefone', `cpf`='$cpf' where id = $id";
         
         $msg = "usuario adc";
 
