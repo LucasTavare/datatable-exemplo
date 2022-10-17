@@ -1,6 +1,7 @@
 <?php
 
 include 'function.php';
+include 'enviaEmail.php';
 
 try{
 
@@ -44,6 +45,8 @@ try{
         $msg = "usuario adc";
 
         addUpdDel($sql,$msg);
+
+        enviaEmail($email,$nome);
 
 }catch(PDOException $erro) {
     pdocatch($erro);
