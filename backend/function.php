@@ -88,4 +88,35 @@ function checkCpfUser($cpf){
     }
 
 }
+
+function geraTokenUsuario($email){
+
+    $sql = "SELECT id FROM tb_login WHERE email='$email'";
+
+    $comando=$GLOBALS['con']->prepare($sql);
+
+    $comando->execute();
+
+    $dados = $comando->fetchAll(PDO::FETCH_ASSOC);
+
+    $idUsuario = $dados[0]['id'];
+
+    $token = md5(uniqid($email));
+
+    $sql = "INSERT INTO tb_usuarios_token(token,fk_id_login) VALUES ('$token',$idUsuario)";
+
+    $comando=$GLOBALS['con']->prepare($sql);
+
+    $comando->execute();
+
+    return $token;
+}
+
+function apagatoken($id){
+
+    $id = $_POST['id'];
+
+    $sql = "DELETE FROM tb_usuarios_token WHERE id = $id ";
+
+}
 ?>

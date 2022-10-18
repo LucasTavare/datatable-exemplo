@@ -6,9 +6,6 @@ date_default_timezone_set('America/Sao_Paulo');
 
 
 //  <=========================================> quem recebe <=========================================> \\
-$destinario = $_POST['email'];
-
-$destinatario_nome = $_POST['nome'];
 
 
 /**
@@ -25,7 +22,7 @@ $destinatario_nome = $_POST['nome'];
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-function enviaEmail($destinario, $destinatario_nome)
+function enviaEmail($destinario, $destinatario_nome,$token)
 {
     $email_servidor = 'smtp.gmail.com';
 
@@ -34,6 +31,8 @@ function enviaEmail($destinario, $destinatario_nome)
     $email_usuario = 'tecnico22asenac@gmail.com';
 
     $email_senha = 'zvfarpeztyqgtrhe';
+
+    $email_assunto = 'Sistema senac - ative sua conta';
     // usada so se tiver gerenciadndo pacotes composer
     // require '../vendor/autoload.php';
 
@@ -94,7 +93,7 @@ function enviaEmail($destinario, $destinatario_nome)
     $mail->addAddress($destinario);
 
     //Set the subject line
-    $mail->Subject = 'Teste PHPMailer';
+    $mail->Subject = $email_assunto;
 
     //Read an HTML message body from an external file, convert referenced images to embedded,
     //convert HTML into a basic plain-text alternative body
@@ -103,7 +102,16 @@ function enviaEmail($destinario, $destinatario_nome)
     //Replace the plain text body with one created manually
     // $mail->AltBody = 'This is a plain-text message body';
 
-    $mail->Body = 'Usuario cadastrado com sucesso';
+    $email_corpo = <<<EMAIL
+    <h1>Olá $destinatario_nome, bem viindo ao Sistema Senac</h1>
+    <p>Ative o seu login, acessando o link abaixo:</p>
+    <a href="http://localhost/datatable-exemplo/backend/ativa-usuario.php?token=$token"> Ativar acesso</a>
+    <small>Esse é um email automatico, nao responda</small>
+    
+EMAIL;
+
+$mail->Body = $email_corpo;
+$mail->isHTML(true);
 
     //Attach an image file
     // $mail->addAttachment('../img/nyan-cat.gif');

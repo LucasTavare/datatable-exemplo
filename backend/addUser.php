@@ -46,7 +46,9 @@ try{
 
         addUpdDel($sql,$msg);
 
-        enviaEmail($email,$nome);
+        $token = geraTokenUsuario($email);
+
+        enviaEmail($email,$nome, $token);
 
 }catch(PDOException $erro) {
     pdocatch($erro);
