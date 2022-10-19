@@ -22,7 +22,7 @@ date_default_timezone_set('America/Sao_Paulo');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-function enviaEmail($destinario, $destinatario_nome,$token)
+function enviaEmail($destinario, $destinatario_nome, $token)
 {
     $email_servidor = 'smtp.gmail.com';
 
@@ -105,7 +105,7 @@ function enviaEmail($destinario, $destinatario_nome,$token)
     $email_corpo = <<<EMAIL
     <h1>Olá $destinatario_nome, bem viindo ao Sistema Senac</h1>
     <p>Ative o seu login, acessando o link abaixo:</p>
-    <a href="http://localhost/datatable-exemplo/backend/ativa-usuario.php?token=$token"> Ativar acesso</a>
+    <a href="http://localhost/datatable-exemplo/backend/ativaUsuario.php?token=$token"> Ativar acesso</a>
     <small>Esse é um email automatico, nao responda</small>
     
 EMAIL;

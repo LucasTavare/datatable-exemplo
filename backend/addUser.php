@@ -48,7 +48,7 @@ try{
 
         $token = geraTokenUsuario($email);
 
-        enviaEmail($email,$nome, $token);
+        enviaEmail($email,$nome,$token);
 
 }catch(PDOException $erro) {
     pdocatch($erro);
