@@ -1,3 +1,12 @@
+const FechaLoader = () => {
+    $('.preloader').fadeOut("slow", 0);
+}
+
+const AbreLoader = () => {
+
+    $('.preloader').fadeTo("slow", 1);
+}
+
 $(document).ready(function () {
 
 listUser()
@@ -8,10 +17,13 @@ $('#cpf').inputmask('999.999.999-99')
 $('#edita-telefone').inputmask('(99) 99999-9999')
 $('#edita-cpf').inputmask('999.999.999-99')
 
+
+FechaLoader()
+
 });
 
 const addUser = () => {
-
+    AbreLoader ()
     // validação de campos vazios
 
     // let nome = $('#nome').val()
@@ -35,6 +47,7 @@ const addUser = () => {
         .then((response) => response.json())
         .then((result) => {
 
+            FechaLoader()
             Swal.fire({
                 title: 'Atenção',
                 text: result.Mensagem,
@@ -55,6 +68,8 @@ const listUser = () => {
     })
         .then((response) => response.json())
         .then((result) => {
+
+            
 
             let datahora = moment().format('DD/MM/YY HH:mm')
             $('#horario-atualizado').html(datahora)
@@ -209,3 +224,4 @@ const updateUser = () => {
         })
 
 }
+

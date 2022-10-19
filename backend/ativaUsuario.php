@@ -11,7 +11,8 @@ try{
     INNER JOIN
         tb_usuarios_token t
     ON
-        t.fk_id_login = u.id
+        t.fk_id_login
+         = u.id
     SET
         u.ativo = 1
     WHERE
